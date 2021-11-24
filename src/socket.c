@@ -7,7 +7,7 @@ int socket_connect(char *hostname, int port)
     int sockfd;
     if ((host = gethostbyname(hostname)) == NULL)
     {
-        fprintf(stderr, "gethostbyname() failed\n");
+        printf("Couldn't resolve host.\n");
         return -1;
     }
     if ((sockfd = socket(AF_INET, SOCK_STREAM, 0)) == -1)
