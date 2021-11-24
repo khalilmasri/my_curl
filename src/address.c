@@ -43,7 +43,7 @@ char *get_path(char *address, char *path)
     return path;
 }
 
-char *remove_path(char *address, char *path)
+char *remove_path(char *address)
 {
     int i = 0;
     while (address[i] != '\0' && address[i] != '/')
@@ -52,3 +52,4 @@ char *remove_path(char *address, char *path)
     address[i] = '\0';
     return address;
 }
+
