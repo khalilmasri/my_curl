@@ -2,7 +2,7 @@ SRC=src
 OBJ=obj
 BIN=bin
 
-CFLAGS += -W  -Wall -g3 -Iinclude 
+CFLAGS += -W  -Wall -g3 -Iinclude -fsanitize=address
 CC= gcc
 TARGET= my_curl
 RM= rm -rf
@@ -14,7 +14,6 @@ OBJS=$(patsubst $(SRC)/%.c, $(OBJ)/%.o, $(SRCS))
 
 all: $(TARGET)
 
-
 $(TARGET): $(OBJS)
 	$(CC) -o $(TARGET) $(OBJS) $(CFLAGS)
 
@@ -22,4 +21,12 @@ $(OBJ)/%.o: $(SRC)/%.c
 	${CC} ${CFLAGS} -c $< -o $@
 
 clean:
-	$(RM) $(TARGET) $(BIN)/*.dSYM $(OBJ)
+	$(RM) $(OBJ)/*.o 
+
+fclean: clean
+	$(RM) $(TARGET) $(OBJ)
+
+re: 	fclean clean
+
+.PHONY: all clean fclean re
+
